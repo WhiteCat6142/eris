@@ -1,4 +1,4 @@
-# Silk
+# Eris
 A Programming Language
 and its js translater
 
