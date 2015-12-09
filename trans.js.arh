@@ -1,0 +1,31 @@
+function node(){
+ this.l=new Array();
+}
+node.prototype ={
+ add:function(n){this.l.push(n);},
+ toString:function(){
+  var arr=this.l;
+  var str="";
+  for (var i = 0, len = arr.length; i < len; i++)
+   str+=arr[i].toString()+" ";
+  return "("+str+")";
+ }
+};
+var str = "a (1+1*1)";
+var a = new node();
+var re= new RegExp(/[^\b\s*]|\*/g);
+var arr;
+var stack = new Array();
+while ((arr = re.exec(str)) !=null) {
+var c =arr[0];
+if (c==")") {a=stack.pop();}
+else if (c=="(") {
+var child = new node();
+a.add(child);
+stack.push(a);
+a=child;
+}
+else if (c=="+") {a.l.unshift("add");}
+else{a.add(c);}
+}
+print(a);
